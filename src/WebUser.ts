@@ -1,37 +1,40 @@
+import { UserState } from "./UserState"
 
-export class WebUser {
-    private login_id: string;
-    private password: string;
-    private state: string;
+class WebUser {
+    private login_id: string
+    private password: string
+    private state: UserState
 
-    constructor(login_id: string,password: string){
-        this.login_id = login_id;
-        this.password = password;
-        this.state =UserState.NEW
+    constructor(login_id: string, password: string) {
+        this.login_id = login_id
+        this.password = password
+        this.state = UserState.NEW
     }
-    public getlogin_id():string{
+
+    public getLogin_id(): string {
         return this.login_id
     }
-    public setpassword(password: string):void{
-         this.password = password
+
+    public setLogin_id(login_id: string): void {
+        this.login_id = login_id
     }
-    public getstate():UserState{
+
+    public setPassword(password: string): void {
+        this.password = password
+    }
+
+    public getState(): UserState {
         return this.state
     }
-    public setstate(state:UserState):void{
-        this.state 
+
+    public setState(state: UserState): void {
+        this.state = state
     }
 
-public toString(): string{
-    return `WebUser: ID = $[this.login_id], state= ${this.state}`
-}
+    public toString(): string {
+        return `WebUser | id: ${this.login_id}. State: ${this.state}`
+    }
+
 }
 
-
-
-export class UserState{
-    public static NEW = "New"
-    public static Active = "Active"
-    public static Blocked = "Blocked"
-    public static Banned = "Banned"
-}
+export { WebUser }

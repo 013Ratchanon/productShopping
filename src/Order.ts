@@ -1,85 +1,75 @@
-import { Lineitem } from './Lineitem';
-import { OrderState } from './OrderState';
+
+import { OrderState } from "./OrderState"
+import { LineItem } from "./Lineitem"
+
 export class Order {
-    private number: string;
-    private ordered: string;
-    private shipped: string | null;
-    private ship_to: string;
-    private status: OrderState; 
-    private total: number;
-    private lineItems:Lineitem[]=[]
+    private lineItems: LineItem[] = []
+    private number: string
+    private ordered: string
+    private shipped: string
+    private ship_to: string
+    private status: OrderState
+    private total: number = 0
 
-    constructor(
-        number: string,
-        ordered: string,
-        ship_to: string,
-        status: OrderState,
-        total: number,
-        shipped: string ,
-
-        
-    ) {
-        this.number = number;
-        this.ordered = ordered;
-        this.shipped = shipped;
-        this.ship_to = ship_to;
-        this.status = OrderState.NEW;
-        this.total = 0;
+    constructor(lineItems: LineItem[], number: string, ordered: string, shipped: string, ship_to: string) {
+        this.lineItems = lineItems
+        this.number = number
+        this.ordered = ordered
+        this.shipped = shipped
+        this.ship_to = ship_to
+        this.status = OrderState.NEW
     }
 
-    public calculatateTotal():number{
-        let totalPrice = 0;
-        for(let i = 0; i < this.lineItems.length; i++){
-            totalPrice += this.lineItems[i].getPrice() * this.lineItems[i].getQuantity()
-        }
-        return totalPrice;
-    }
     public getNumber(): string {
-        return this.number;
+        return this.number
     }
 
     public getOrderedDate(): string {
-        return this.ordered;
+        return this.ordered
     }
 
-    public setOrderedDate(ordered:string): void{
-        this.ordered =ordered
+    public getShippedDate(): string {
+        return this.shipped
     }
 
-    public getShipped(): string | null {
-        return this.shipped;
+    public setShippedDate(shipped: string): void {
+        this.shipped = shipped
     }
 
-    public setShipped(shipped:string): void {
-        this.shipped = shipped;
+    public getShip_toAddress(): string {
+        return this.ship_to
     }
 
-    public getShipToAddress(): string {
-        return this.ship_to;
-    }
-
-    public setShipToAddress(address: string): void {
-        this.ship_to = address;
+    public setShip_toAddress(ship: string): void {
+        this.ship_to = ship
     }
 
     public getStatus(): OrderState {
-        return this.status;
+        return this.status
     }
 
     public setStatus(status: OrderState): void {
-        this.status = status;
+        this.status = status
     }
 
     public getTotal(): number {
-        return this.total;
+        return this.total
     }
 
     public setTotal(total: number): void {
-        this.total = total;
+        this.total = total
     }
 
+    public calTotal(): number {
+        let total = 0
+        for (let i = 0; i < this.lineItems.length; i++) {
+            total += this.lineItems[i].getQuantity() * this.lineItems[i].getPrice()
+        }
+        return total
+    }
 
     public toString(): string {
-        return `Order [Number: ${this.number}, Ordered Date: ${this.ordered}, Shipped : ${this.shipped }, Ship To: ${this.ship_to}, Status: ${this.status}, Total: ${this.total}]`;
+        return `Order | [number = ${this.number}, ordered = ${this.ordered}, shipped = ${this.shipped}, ship_to = ${this.ship_to}, status = ${this.status}, total = ${this.total}]`
     }
+
 }
