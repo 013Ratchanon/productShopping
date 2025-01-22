@@ -2,19 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Payment = void 0;
 class Payment {
-    constructor(id, paid, total, details, account = null) {
+    constructor(id, paid, total, details) {
         this.id = id;
         this.paid = paid;
         this.total = total;
         this.details = details;
-        this.orders = [];
-        this.account = account;
     }
     getId() {
         return this.id;
-    }
-    setId(id) {
-        this.id = id;
     }
     getPaid() {
         return this.paid;
@@ -31,23 +26,11 @@ class Payment {
     getDetails() {
         return this.details;
     }
-    setDetails(details) {
-        this.details = details;
-    }
-    getOrders() {
-        return this.orders;
-    }
-    addOrder(order) {
-        this.orders.push(order);
-    }
-    getAccount() {
-        return this.account;
-    }
-    setAccount(account) {
-        this.account = account;
+    setDetails() {
+        this.details = this.details;
     }
     toString() {
-        return `Payment ID: ${this.id}, Paid Date: ${this.paid}, Total: ${this.total}, Details: ${this.details}`;
+        return `Payment | [id: ${this.id}, paid: ${this.paid}, total: ${this.total}, details: ${this.details}]`;
     }
 }
 exports.Payment = Payment;

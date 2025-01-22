@@ -1,15 +1,20 @@
-import { Customer } from "./Customer";
-import { WebUser } from "./WebUser";
+import {Order} from"./Order"
+import { ShoppingCart } from "./ShoppingCart";
+import {Payment} from"./Payment"
 
-class Account extends Customer {
+class Account  {
+    private payments:Payment[] = []
+    private shoppingCart:ShoppingCart;
+    private orders: Order[] = []
     private accountId: string;
     private billing_address: string;
     private is_closed: boolean;
     private open: string;
     private closed: string | null;
 
-    constructor(webUser: WebUser, id: string, address: string, phone: string, email: string, accountId: string, billing_address: string, is_closed: boolean, open: string, closed: string | null) {
-        super(webUser, id, address, phone, email)
+    constructor(orders: Order[]=[],shoppingCart: ShoppingCart[] = [],  accountId: string, billing_address: string, is_closed: boolean, open: string, closed: string | null) {
+
+        this.shoppingCart = new ShoppingCart ("22-1-2568",)
         this.accountId = accountId;
         this.billing_address = billing_address;
         this.is_closed = is_closed;
@@ -52,9 +57,29 @@ class Account extends Customer {
     public setClosed(closed: string | null): void {
         this.closed = closed
     }
+    public addOrder(orders:Order):void{
+        this.orders.push(orders)
+    }
+
+    public getOrders():Order[]{
+        return this.orders
+    }
+    public addPayments(payments:Payment):void{
+        this.payments.push(payments)
+    }
+
+    public getPayments():Payment[]{
+        return this.payments
+    }
+
+    public getShoppingCarts():ShoppingCart{
+        return this.shoppingCart
+    }
+
+    
 
     public toString(): string {
-        return `Account | [id: ${this.accountId}, billing_address: ${this.billing_address}, is_closed: ${this.is_closed}, open: ${this.open}, closed: ${this.closed}, [Customer ${super.toString()}]]`
+        return `Account | [id: ${this.accountId}, billing_address: ${this.billing_address}, is_closed: ${this.is_closed}, open: ${this.open}, closed: ${this.closed},]]`
     }
 
 }

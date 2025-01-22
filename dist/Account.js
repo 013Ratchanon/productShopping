@@ -1,33 +1,38 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Account = void 0;
+const ShoppingCart_1 = require("./ShoppingCart");
 class Account {
-    constructor(id, billingAddress, isClosed, open, closed = null) {
-        this.id = id;
-        this.billingAddress = billingAddress;
-        this.isClosed = isClosed;
-        this.open = open;
-        this.closed = closed;
+    constructor(orders = [], shoppingCart = [], accountId, billing_address, is_closed, open, closed) {
         this.payments = [];
         this.orders = [];
+        this.shoppingCart = new ShoppingCart_1.ShoppingCart("22-1-2568");
+        this.accountId = accountId;
+        this.billing_address = billing_address;
+        this.is_closed = is_closed;
+        this.open = open;
+        this.closed = closed;
     }
     getId() {
-        return this.id;
+        return this.accountId;
     }
-    getBillingAddress() {
-        return this.billingAddress;
+    getBilling_address() {
+        return this.billing_address;
     }
-    setBillingAddress(address) {
-        this.billingAddress = address;
+    setBilling_address(billing_address) {
+        this.billing_address = billing_address;
     }
-    getIsClosed() {
-        return this.isClosed;
+    getIs_closed() {
+        return this.is_closed;
     }
-    setIsClosed(isClosed) {
-        this.isClosed = isClosed;
+    setIs_closed(is_closed) {
+        this.is_closed = is_closed;
     }
     getOpen() {
         return this.open;
+    }
+    setOpen(open) {
+        this.open = open;
     }
     getClosed() {
         return this.closed;
@@ -35,21 +40,23 @@ class Account {
     setClosed(closed) {
         this.closed = closed;
     }
-    getPayments() {
-        return this.payments;
-    }
-    addPayment(payment) {
-        this.payments.push(payment);
+    addOrder(orders) {
+        this.orders.push(orders);
     }
     getOrders() {
         return this.orders;
     }
-    addOrder(order) {
-        this.orders.push(order);
+    addPayments(payments) {
+        this.payments.push(payments);
+    }
+    getPayments() {
+        return this.payments;
+    }
+    getShoppingCarts() {
+        return this.shoppingCart;
     }
     toString() {
-        var _a;
-        return `Account ID: ${this.id}, Billing Address: ${this.billingAddress}, Is Closed: ${this.isClosed}, Open Date: ${this.open}, Closed Date: ${(_a = this.closed) !== null && _a !== void 0 ? _a : "N/A"}`;
+        return `Account | [id: ${this.accountId}, billing_address: ${this.billing_address}, is_closed: ${this.is_closed}, open: ${this.open}, closed: ${this.closed},]]`;
     }
 }
 exports.Account = Account;

@@ -7,11 +7,14 @@ class Product {
         this.name = name;
         this.supplier = supplier;
     }
+    getId() {
+        return this.id;
+    }
     getName() {
         return this.name;
     }
-    setName(Name) {
-        this.name;
+    setName(name) {
+        this.name = name;
     }
     getSupplier() {
         return this.supplier;
@@ -20,7 +23,7 @@ class Product {
         this.supplier = supplier;
     }
     toString() {
-        return `Product[ID =${this.id},Name = ${this.name},Supplier =${this.supplier}]`;
+        return `Product | [id = ${this.id}], [name = ${this.name}], [supplier = ${this.supplier}]`;
     }
 }
 exports.Product = Product;
